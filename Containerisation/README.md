@@ -73,6 +73,8 @@ the great thing about docker, is that you don't need to be located in a specific
 
 `docker run hello-world` this will run an API call. see what it does
 
+![run hello world](https://user-images.githubusercontent.com/47668244/189700684-9e2263fc-f95e-4e71-8ad6-6d1e0e5e90fa.png)
+
 if you can't run commands with docker (on the commandline) then you may need to `docker login` or make an alias
 
 `docker images` lists all of the available images you have in your local docker engine.
@@ -83,9 +85,17 @@ TAGS are important in docker because they can be really useful when executing co
 
 `docker run -p 80:80 nginx` runs your nginx container, communicating your localhost on port 80 with docker on port 80. `docker run -d -p 80:80 nginx` the `-d` makes it run in background so you can get your terminal back.
 
+![docker run nginx](https://user-images.githubusercontent.com/47668244/189701337-178383f6-2f05-4317-9cf9-94475fc861c7.png)
+
+![docker run nginx - evidence](https://user-images.githubusercontent.com/47668244/189701144-ad79d0d8-8f62-4e52-8c3c-18d1ef851153.png)
+
 `docker stop YOUR CONTAINER_ID`. Stops your running container. Use `docker ps` to get the id of the container you want to stop. If doesn't work, use `-f`.
 
-`docker exec -it CONTAINER_ID sh` interacts with a container.
+![container already running  docker stop is solution](https://user-images.githubusercontent.com/47668244/189701091-0dfe3bd8-60a2-4a95-a17a-bd1bbc408c67.png)
+
+`docker exec -it CONTAINER_ID sh` interacts with a container. Just like sshing into a vm or ec2;
+
+![the power of docker exec](https://user-images.githubusercontent.com/47668244/189701000-c11e6907-2fff-4ddf-b4d5-eaeb6c5d6104.png)
 
 Let's check out how organisations use docker containers. We'll check out index.html
 
@@ -101,9 +111,15 @@ edit the `<h1>` from 'welcome to nginx!' to become 'welcome to eng122 devops'.
 
 You should be able to see the changes when you reload now
 
+![making changes on an image](https://user-images.githubusercontent.com/47668244/189701402-5c10829b-bdf9-4c46-9263-b174f4aa78af.png)
+
 however, these changes that you've made do not remain on the container, as images are imutable on docker.
 
 Now let's checkout someone else's image being run on our localhost, `docker run -d -p 90:80 ahskhan/eng114_nginx:v2`.
+
+![using someone else's image #1](https://user-images.githubusercontent.com/47668244/189700759-b3bf40f4-1b60-47eb-a823-51aa3c7c0440.png)
+
+![using someone else's image #2](https://user-images.githubusercontent.com/47668244/189700782-305e7a27-111e-404d-af80-29d12fb609e8.png)
 
 When going by other's repos or sharing your own, the naming convention is `USERNAME/REPO_NAME:VERSION`
 
@@ -130,6 +146,12 @@ give it tags
 then push it
 
 `docker push IMAGE_TAG`
+
+![tagging   pushing image](https://user-images.githubusercontent.com/47668244/189700555-4da3087a-194f-4c06-928f-bab838f42728.png)
+
+You should be able to see it in your dockerhub repositories:
+
+![tagging   pushing image - proof](https://user-images.githubusercontent.com/47668244/189700538-1b10d8c5-8e9e-4542-bbfc-16947d5f670e.png)
 
 ## Kubernetes
 
