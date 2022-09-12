@@ -36,3 +36,6 @@ Virtualisation allows for multiple heavy resources to be run on the same hardwar
 
 Smaller than a VM, and require less start-up time; allowing more containers to be run on the same capacity as a single VM. This increases efficiencies, and thus reduces server or licensing costs.
 
+![containers vs vms](https://user-images.githubusercontent.com/47668244/189631842-b7508654-f377-4f07-ac2a-b2de72bb89b0.png)
+
+
