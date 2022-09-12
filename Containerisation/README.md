@@ -61,6 +61,8 @@ Similar to github, docker has a registry for containers, images etc, called 'doc
 
 - docker run
 
+![dockerhub](https://user-images.githubusercontent.com/47668244/189656735-bc747954-e282-4f42-88c7-45aac950e6f0.png)
+
 ## Kubernetes
 
 what are kubernetes?
