@@ -12,6 +12,8 @@ Containers are typically considered lightweight, as they rest beside the operati
 
 Containerised applications are 'isolated', they do not bundle in a copy of the OS. Instead, a runtime engine (i.e., Docker and the like) running on the host operating system becomes the conduit for containers to share an OS with other containers on the same computing system. Common bins and libraries can also be shared among multiple containers; eliminating the running overhead for an operating system, making containers smaller and faster to start up.
 
+![What is a Container - Docker](https://user-images.githubusercontent.com/47668244/189632819-a577ebfb-b1a9-41df-8dc6-e7512ddb54f7.png)
+
 ### Benefits
 
 - portability
@@ -40,7 +42,8 @@ Smaller than a VM, and require less start-up time; allowing more containers to b
 
 ## Docker
 
-![docker logo]()
+![docker logo](https://user-images.githubusercontent.com/47668244/189632782-93325e56-0f2c-4137-ba5a-8e7115818795.png)
+
 
 Docker Engine is a set of platform as a service (PaaS) products, which use virtualisation on the OS-level to deliver containerisation.
 
