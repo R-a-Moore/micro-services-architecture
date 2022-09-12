@@ -49,7 +49,17 @@ Docker Engine is a set of platform as a service (PaaS) products, which use virtu
 
 Open Source
 
-Over 50,000 uses across organisations of all colour of industries; Ebay, Spotify, Uber
+Over 50,000 uses across organisations of all colour of industries; Ebay, Spotify, Uber. Due to its vast usecases and user numbers of Docker, it is a great motivation for 
+
+### Using Docker
+
+Similar to github, docker has a registry for containers, images etc, called 'docker hub'.
+
+- docker build
+
+- docker pull
+
+- docker run
 
 ## Kubernetes
 
