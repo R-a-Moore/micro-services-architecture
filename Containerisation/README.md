@@ -51,17 +51,85 @@ Open Source
 
 Over 50,000 uses across organisations of all colour of industries; Ebay, Spotify, Uber. Due to its vast usecases and user numbers of Docker, it is a great motivation for 
 
+#### Images & Containers
+
+Containers are applications in fluid action. Images (similar to virtualisation images, such as AMIs in AWS), are imutable - unchangable - snapshots of containers, which are what are typically used to run applications in deployment. In other words, a team will have the build of the application, place it into a docker image, then have that be run as deployment.
+
 ### Using Docker
+
+[Install from site first of course](https://docs.docker.com/desktop/install/windows-install/)
 
 Similar to github, docker has a registry for containers, images etc, called 'docker hub'.
 
-- docker build
+- docker build; 
 
-- docker pull
+- docker pull; 
 
-- docker run
+- docker run; `docker run -p 80 80 nginx`. if you don't specify version, it will by default go for the latest image version.
 
 ![dockerhub](https://user-images.githubusercontent.com/47668244/189656735-bc747954-e282-4f42-88c7-45aac950e6f0.png)
+
+the great thing about docker, is that you don't need to be located in a specific/relevant directory in order to run commands on the terminal.
+
+`docker run hello-world` this will run an API call. see what it does
+
+if you can't run commands with docker (on the commandline) then you may need to `docker login` or make an alias
+
+`docker images` lists all of the available images you have in your local docker engine.
+
+`docker ps` checks docker's containers. shows id, status etc `docker ps -a` view hidden ones.
+
+TAGS are important in docker because they can be really useful when executing commands by specific type, i.e., run an image on the version, by using the 'latest' tag.
+
+`docker run -p 80:80 nginx` runs your nginx container, communicating your localhost on port 80 with docker on port 80. `docker run -d -p 80:80 nginx` the `-d` makes it run in background so you can get your terminal back.
+
+`docker stop YOUR CONTAINER_ID`. Stops your running container. Use `docker ps` to get the id of the container you want to stop. If doesn't work, use `-f`.
+
+`docker exec -it CONTAINER_ID sh` interacts with a container.
+
+Let's check out how organisations use docker containers. We'll check out index.html
+
+Go to default local `cd /usr/share/nginx/html`
+
+`cat index.html` 
+
+(may need to update & upgrade, then install sudo, nano, and then you should be able to nano).
+
+`sudo nano index.html`
+
+edit the `<h1>` from 'welcome to nginx!' to become 'welcome to eng122 devops'.
+
+You should be able to see the changes when you reload now
+
+however, these changes that you've made do not remain on the container, as images are imutable on docker.
+
+Now let's checkout someone else's image being run on our localhost, `docker run -d -p 90:80 ahskhan/eng114_nginx:v2`.
+
+When going by other's repos or sharing your own, the naming convention is `USERNAME/REPO_NAME:VERSION`
+
+delete an image: `docker rm CONTAINER_ID` Use `-f` to force deletion if running
+
+delete an image: `docker rmi IMAGE_NAME` Use `-f` to force deletion if running
+
+#### Creating And Push an Image
+
+[Steps to create containers & images](https://www.dataset.com/blog/create-docker-image/)
+
+create a container
+
+`docker create --name CONTAINER NAME -p LOCAL_PORT:DOCKER_PORT PACKAGE(nginx etc)`
+
+create an image
+
+`docker commit CONTAINER_NAME`
+
+give it tags
+
+`docker tag CONTAINER_ID IMAGE_NAME` to do it with tags; `docker commit CONTAINER_ID IMAGE_NAME TAG` the tag should follow the naming convention of 'dockerhub account name'/'dockerhub repo name'
+
+then push it
+
+`docker push IMAGE_TAG`
 
 ## Kubernetes
 
