@@ -47,4 +47,8 @@ Smaller than a VM, and require less start-up time; allowing more containers to b
 
 Docker Engine is a set of platform as a service (PaaS) products, which use virtualisation on the OS-level to deliver containerisation.
 
+Open Source
+
+Over 50,000 uses across organisations of all colour of industries; Ebay, Spotify, Uber
+
 
