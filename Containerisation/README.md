@@ -153,6 +153,76 @@ You should be able to see it in your dockerhub repositories:
 
 ![tagging   pushing image - proof](https://user-images.githubusercontent.com/47668244/189700538-1b10d8c5-8e9e-4542-bbfc-16947d5f670e.png)
 
+### Real world Use
+
+`docker run -d -p 2368:2368 ghost` (need to enable port 2368)
+
+`nano index.html` write a bunch of html into the file:
+
+```
+<html> 
+  <head>
+    <title>Welcome to Christian's Website</title>
+      <body>
+        <h1>Welcome to CHristian's Website</h1>
+        <h2>This Website is hosted inside a microservice using docker</h2>
+      </body>
+  </head>
+</html>
+```
+I put this file into a 'resources' directory for ease of use, later on.
+
+Now we want to replace the default index.html with our one we've just created, in a running container.
+
+run/create a container `docker run -d -p 80:80 nginx`
+
+now we need to permission and go into the nginx docker we're running and change it.
+
+move file from localhost to container
+
+delete existing file
+
+send file.html from localhost to nginx container (i.e., copy data from a - b): `docker cp SOURCE_ADDRESS CONTAINER_ID:`. However there may be permission issues (either on your localhost OS, or your docker hub end).
+
+```
+docker cp /c/Users/Raphael/GitHub/week8/Micro-Services/resources/index.html 6af7e0f6be4a:/
+```
+then enter the container
+
+```
+docker exec -it 6af7e0f6be4a sh
+```
+replace default index.html
+
+```
+sudo cp -f index.html /usr/share/nginx/html/index.html
+```
+
+### Automating with Dockerfile
+
+create (in the same directory as your index.html file); a file called `Dockerfile`
+
+```
+# select base image (version `:` optional)
+FROM nginx
+
+# label it (optional)
+LABEL MAINTAINER=christian@sparta
+
+# copy data from localhost to the container
+COPY index.html /usr/share/nginx/html/
+
+# allow required port
+EXPOSE 80
+
+# execute required command - as per the default given by the documentation of nginx in dockerhub (since we're using nginx)
+CMD [ "nginx", "-g", "daemon off;" ]
+
+```
+
+`docker build -t DOCKERHUB_ACCOUNT/REPO_NAME FILEPATH` i.e., in this example `docker build -t rcmoore/eng122_nginx_web_hosting .`
+
+Now push it to docker hub: `docker push rcmoore/eng122_nginx_web_hosting`
 ## Kubernetes
 
 what are kubernetes?
