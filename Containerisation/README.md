@@ -223,9 +223,91 @@ CMD [ "nginx", "-g", "daemon off;" ]
 `docker build -t DOCKERHUB_ACCOUNT/REPO_NAME FILEPATH` i.e., in this example `docker build -t rcmoore/eng122_nginx_web_hosting .`
 
 Now push it to docker hub: `docker push rcmoore/eng122_nginx_web_hosting`
-## Kubernetes
 
-what are kubernetes?
+## Docker Compose
+
+Docker-compose allows you to deploy multiple containers with docker, such that you could have our node-app working alongside our mongodb.
+
+
+Dockerfile for our node-app
+
+```
+# base image 
+FROM node
+
+# label
+LABEL MAINTAINER=christian
+
+# inside the container what would the default working directory be; /usr/src/app
+WORKDIR /usr/src/app
+
+# copy dependencies - app folder
+COPY package*.json ./
+#copy all files with /json extension to default location
+
+# run some commands such as npm install
+RUN npm install -g npm@7.20.6
+
+# COPY EVERYTHING FROM CURRENT LOCATION & PASTE INSIDE DEFAULT LOCAL
+COPY . .
+
+# expose the port 3000
+EXPOSE 3000
+
+# run the code
+CMD ["node", "app.js"]
+
+# build this image - package it up
+```
+
+Docker-compose.yml file
+
+```version: "3"
+
+services:
+
+  mongo:
+
+    image: mongo
+
+    container_name: mongo
+
+    volumes:
+
+      - ./mongod.conf:/etc/mongod.conf
+
+      - ./logs:/var/log/mongod/
+
+      - ./db:/var/lib/mongodb
+
+    ports:
+
+      - "27017:27017"
+
+  app:
+
+    container_name: app
+
+    restart: always
+
+    build: .
+
+    ports:
+
+      - "3000:3000"
+
+    links:
+
+      - mongo
+
+    environment:
+
+      - DB_HOST=mongodb://mongo:27017/posts
+
+    command: node seeds/seed.js
+```
+
+
 
 
 
