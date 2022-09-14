@@ -6,15 +6,13 @@ services:
 
     image: mongo
 
+    restart: always
+
     container_name: mongo
 
     volumes:
 
       - ./mongod.conf:/etc/mongod.conf
-
-      - ./logs:/var/log/mongod/
-
-      - ./db:/var/lib/mongodb
 
     ports:
 
@@ -26,7 +24,7 @@ services:
 
     restart: always
 
-    build: .
+    build: ./app
 
     ports:
 
@@ -40,4 +38,4 @@ services:
 
       - DB_HOST=mongodb://mongo:27017/posts
 
-    command: node seeds/seed.js
+    # command: node seeds/seed.js

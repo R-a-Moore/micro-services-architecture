@@ -307,6 +307,8 @@ services:
     command: node seeds/seed.js
 ```
 
+Then we run the docker-compose.yml file with `docker compose up` or `docker-compose up`
+
 
 
 
