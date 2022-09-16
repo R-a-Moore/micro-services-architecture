@@ -268,17 +268,15 @@ services:
 
   mongo:
 
-    image: mongo
+    image: mongo:3.2.20
+
+    restart: always
 
     container_name: mongo
 
     volumes:
 
       - ./mongod.conf:/etc/mongod.conf
-
-      - ./logs:/var/log/mongod/
-
-      - ./db:/var/lib/mongodb
 
     ports:
 
@@ -290,7 +288,7 @@ services:
 
     restart: always
 
-    build: .
+    build: ./app
 
     ports:
 
@@ -303,11 +301,13 @@ services:
     environment:
 
       - DB_HOST=mongodb://mongo:27017/posts
-
-    command: node seeds/seed.js
 ```
 
 Then we run the docker-compose.yml file with `docker compose up` or `docker-compose up`
+
+`docker compose down`
+
+If you want to see the /posts content, you will have to docker exec into the container and then run the - node seeds - command. Alternatively, you could run `docker exec -it container:id  node seeds/seed.js`, not needing to enter into the container shell.
 
 
 

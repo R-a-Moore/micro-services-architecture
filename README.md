@@ -17,3 +17,5 @@ The point of microservices, is so that the user journey is always smooth
 - scalability
 
 - cost efficiencies
+
+In theory, what you want to do with micro-services architecture, is to start of by building one or two services in small teams each, and build up from that, using containers to hold the services, and deployed with scalability and high availability in the form of kubernetes k8 clusters.

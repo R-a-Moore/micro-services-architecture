@@ -1,0 +1,37 @@
+# Create an API call for deployment, using documentation
+
+
+# YML is case sensitive - indentation should be 2 spaces (not TAB)
+
+apiVerion: apps/v1 # which api to use for deployment
+kind: Deployment # what kind of service/object you want to create
+
+# what would you liek to call it - name the service/object
+
+metadata:
+  name: nginx-deployment # naming the deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+
+# let's create a replica set of this with 3 instances:pods
+  replicas: 3
+
+  # template to use it's label for k8 service to launch in the browser
+  template:
+
+# create a kubernetes nginx-service.yml to create a k8 service
+
+  metadata: 
+    labels:
+      app: nginx # this label connects to the service or any other k8 components
+
+# let's define the container spec
+    spec:
+      containers:
+      - name: nginx
+        image: ahskhan/eng89automatednginx:latest
+        ports:
+        - containerPort: 80
+
